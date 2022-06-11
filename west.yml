@@ -39,7 +39,7 @@ manifest:
         # the zephyr project.
         #
         # Please keep this list sorted alphabetically.
-        name-whitelist:
+        name-allowlist:
           - fatfs
     - name: ZCAN-xlib
       revision: master
