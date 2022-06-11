@@ -1,0 +1,85 @@
+# The west manifest file (west.yml) for the ZCAN SDK .
+#
+# The per-workspace west configuration file, ZCAN-IOT/.west/config,
+# specifies the location of this manifest file like this:
+#
+#     [manifest]
+#     path = ZCAN-sdk
+#
+# See the west documentation for more information:
+#
+# https://
+
+manifest:
+  # This west.yml requires west 0.9 or later, because the "submodules"
+  # feature used below was introduced then.
+  version: 0.9
+
+  defaults:
+    remote: ZCAN-sdk
+
+  remotes:
+    - name: ZCAN-sdk
+      url-base: https://gitee.com/ZCAN-IOT
+
+  #
+  # Please add items below based on alphabetical order
+  projects:
+    - name: zephyr
+      revision: zephyr-v3.1.0
+      import: 
+        # In addition to the zephyr repository itself, ZCANSDK also
+        # imports the contents of zephyr/west.yml at the above
+        # revision. Only the projects explicitly named in the
+        # following whitelist are imported.
+        #
+        # Note that the zephyr west extensions (like 'build', 'flash',
+        # 'debug', etc.) are automatically provided by this import, so
+        # there's no need to add a redundant west-commands: key for
+        # the zephyr project.
+        #
+        # Please keep this list sorted alphabetically.
+        name-whitelist:
+          - fatfs
+    - name: ZCAN-xlib
+      revision: master
+      path: ZCAN-xlib
+    - name: fatfs
+      revision: 09a9d913c61dccbb8ff92d8943b452c614ac5292
+      path: modules/fs/fatfs
+    - name: mbedtls
+      revision: 5765cb7f75a9973ae9232d438e361a9d7bbc49e7
+      path: modules/crypto/mbedtls
+    - name: mcuboot
+      revision: 89936c338e46f43cb177a8b928cd80b90f3ace8f
+      path: bootloader/mcuboot
+    - name: sof-develop
+      revision: main
+      path: modules/audio/sof
+    - name: sof-docs
+      revision: master
+      path: modules/audio/sof-docs
+    - name: tinycbor
+      path: modules/lib/tinycbor
+      revision: 40daca97b478989884bffb5226e9ab73ca54b8c4           
+    - name: tinycrypt
+      path: modules/crypto/tinycrypt
+      revision: 3e9a49d2672ec01435ffbf0d788db6d95ef28de0
+    - name: hal_xtensa
+      revision: 84058f95f170fcf094458c11d9fbf083a141d969 
+      path: modules/hal/xtensa
+    - name: TraceRecorderSource
+      path: modules/debug/TraceRecorder
+      revision: 36c577727642457b0db7274298a4b96558374832
+    - name: tflite-micro
+      revision: 9156d050927012da87079064db59d07f03b8baf6
+      path: modules/lib/tflite-micro
+    - name: cmsis
+      revision: b0612c97c1401feeb4160add6462c3627fe90fc7
+      path: modules/hal/cmsis
+    #- name: ethermind
+    #  path: ZCAN-modules/ethermind
+ 
+  self:
+    path: ZCAN-sdk
+    west-commands: scripts/west-commands.yml
