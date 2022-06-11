@@ -26,6 +26,7 @@ manifest:
   # Please add items below based on alphabetical order
   projects:
     - name: zephyr
+      repo-path: zephyr
       revision: zephyr-v3.1.0
       import: 
         # In addition to the zephyr repository itself, ZCANSDK also
